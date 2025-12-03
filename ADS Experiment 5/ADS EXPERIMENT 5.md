@@ -1,0 +1,44 @@
+# ADS EXPERIMENT 5  
+  
+Implement & Demonstrate PL/SQL Function at Schema level.  
+1)Implement a PL/SQL Function to find the number of employees working for “TCS” & getting salary  
+more than Rs.50,000/-  
+  
+```
+CREATE TABLE EMPLOYEE(EMP_NAME VARCHAR(50), COMPANY VARCHAR(50), SALARY NUMBER);
+
+```
+  
+INSERT INTO EMPLOYEE (EMP_NAME, COMPANY, SALARY) VALUES ('Amit Sharma', 'TCS', 62000);  
+INSERT INTO EMPLOYEE (EMP_NAME, COMPANY, SALARY) VALUES ('Riya Patil', 'TCS', 54000);  
+INSERT INTO EMPLOYEE (EMP_NAME, COMPANY, SALARY) VALUES ('Karan Desai', 'TCS', 48000);  
+INSERT INTO EMPLOYEE (EMP_NAME, COMPANY, SALARY) VALUES ('Sneha Kulkarni', 'Infosys', 70000);  
+INSERT INTO EMPLOYEE (EMP_NAME, COMPANY, SALARY) VALUES ('Rahul Jain', 'TCS', 90000);  
+INSERT INTO EMPLOYEE (EMP_NAME, COMPANY, SALARY) VALUES ('Pooja Mehta', 'Wipro', 51000);  
+INSERT INTO EMPLOYEE (EMP_NAME, COMPANY, SALARY) VALUES ('Suresh Naik', 'TCS', 35000);  
+INSERT INTO EMPLOYEE (EMP_NAME, COMPANY, SALARY) VALUES ('Devanshi Shah', 'TCS', 55000);  
+  
+  
+```
+CREATE OR REPLACE FUNCTION count_tcs_high_salary
+RETURN NUMBER
+IS
+    v_count NUMBER := 0;
+BEGIN 
+    SELECT COUNT(*)
+    INTO v_count
+    FROM EMPLOYEE
+    WHERE COMPANY='TCS' 
+        AND SALARY > 50000;
+
+    RETURN v_count;
+END;
+/
+
+```
+  
+```
+SELECT COUNT_TCS_HIGH_SALARY FROM DUAL;
+
+```
+  
